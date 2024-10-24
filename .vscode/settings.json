@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e10e4bfc-564a-4e9d-89db-c6c68fbd0e0a/resourceGroups/TekNotions_group-a843/providers/Microsoft.Web/sites/TekNotions",
+    "appService.deploySubpath": "API\\bin\\Publish"
+}
