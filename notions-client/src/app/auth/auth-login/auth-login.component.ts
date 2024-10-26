@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AccountService } from './../../_services/account.service';
+import { Component, inject} from '@angular/core';
+import { Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-
+import { FormsModule } from "@angular/forms";
 import { CommonService } from '../../shared/services/common.service';
 
 import { SvgIconComponent } from '../../shared/components/common/svg-icon/svg-icon.component';
@@ -12,26 +13,23 @@ import { LoadingComponent } from '../../shared/skeleton-loader/widgets/loading/l
   selector: 'app-auth-login',
   standalone: true,
   imports: [FeatherIconComponent,SvgIconComponent,LoadingComponent
-    ,RouterModule,ReactiveFormsModule],
+    ,RouterModule,
+    FormsModule],
   templateUrl: './auth-login.component.html',
   styleUrl: './auth-login.component.scss'
 })
 
 export class AuthLoginComponent {
 
-  public loginForm: FormGroup;
+  model: any = {};
+  private accountService = inject(AccountService);
   public show: boolean = false;
   
-  constructor(private fb: FormBuilder, public router: Router,public commonServices :CommonService) {
+  constructor(public router: Router,public commonServices :CommonService) {
     const userData = localStorage.getItem('user');
       if(userData?.length != null){
         router.navigate(['/news-feed-layout/style-1'])
       }
-    this.loginForm = this.fb.group({
-      email: ["Test@gmail.com", [Validators.required, Validators.email]],
-      password: ["test123", Validators.required],
-    });
-
   }
 
   showPassword() {
@@ -39,15 +37,29 @@ export class AuthLoginComponent {
   }
 
   login() {
-    if (this.loginForm.value["email"] == "Test@gmail.com" && this.loginForm.value["password"] == "test123") {
-      let user = {
-        email: "Test@gmail.com",
-        password: "test123",
-        name: "test user",
-      };
-      localStorage.setItem("user", JSON.stringify(user));
-      this.router.navigate(["/news-feed-layout/style-1"]);
-    }
+    
+    this.accountService.login(this.model).subscribe({
+      next: (response) => {
+      
+        let user = {
+            token: response, //cew todo
+            username: this.model.username,
+          };
+          localStorage.setItem("user", JSON.stringify(user));
+          this.router.navigate(["/news-feed-layout/style-1"]);        
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
+  register(){
+    console.log('here', this.model);
+    this.router.navigate(['/others/register']).then(navigatedSuccessfully => {
+      if (!navigatedSuccessfully) {
+        // Handle navigation failure here
+        console.error('Navigation failed'); 
+      }
+    });
   }
 
 }

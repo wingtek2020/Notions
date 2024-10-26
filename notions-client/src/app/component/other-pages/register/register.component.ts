@@ -1,17 +1,55 @@
-import { Component } from '@angular/core';
-import { SvgIconComponent } from '../../../shared/components/common/svg-icon/svg-icon.component';
-import { RouterModule } from '@angular/router';
-import { FeatherIconComponent } from '../../../shared/components/common/feather-icon/feather-icon.component';
-import { LoadingComponent } from '../../../shared/skeleton-loader/widgets/loading/loading.component';
+import { AccountService } from "./../../../_services/account.service";
+import { FormsModule } from "@angular/forms";
+import { Component, inject } from "@angular/core";
+import { SvgIconComponent } from "../../../shared/components/common/svg-icon/svg-icon.component";
+import { FeatherIconComponent } from "../../../shared/components/common/feather-icon/feather-icon.component";
+import { LoadingComponent } from "../../../shared/skeleton-loader/widgets/loading/loading.component";
+
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-register',
+  selector: "app-register",
   standalone: true,
-  imports: [SvgIconComponent,FeatherIconComponent,LoadingComponent,RouterModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  imports: [
+    SvgIconComponent,
+    FeatherIconComponent,
+    LoadingComponent,
+    RouterModule,
+    FormsModule,
+  ],
+  templateUrl: "./register.component.html",
+  styleUrl: "./register.component.scss",
 })
-
 export class RegisterComponent {
+  loggedIn = false;
+  model: any = {};
+  private accountService = inject(AccountService);
 
+  constructor(public router: Router) {}
+
+  register() {
+    this.accountService.register(this.model).subscribe({
+      next: (response) => {
+          
+        this.loggedIn = true;
+        this.router.navigate(["/news-feed-layout/style-1"]);  
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
+  login() {
+    this.accountService.login(this.model).subscribe({
+      next: (response) => {
+        this.loggedIn = true;
+        let user = {
+            token: response, //cew todo
+            username: this.model.username,
+          };
+          localStorage.setItem("user", JSON.stringify(user));
+          this.router.navigate(["/news-feed-layout/style-1"]);        
+      },
+      error: (error) => console.log(error),
+    });
+  }
 }

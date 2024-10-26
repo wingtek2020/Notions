@@ -3,7 +3,7 @@
     <div class="header-section">
         <div class="logo-sec">
             <a [routerLink]="['/news-feed-layout/style-1']">
-                <img src="assets/images/icon/logo.png" alt="logo" class="img-fluid">
+                <img src="assets/images/icon/logo-color2.png" alt="logo" class="img-fluid">
             </a>
         </div>
         <div class="right-links">
@@ -26,7 +26,7 @@
             <div class="col-xl-6 col-lg-5 d-none d-lg-block">
                 <div class="login-welcome">
                     <div>
-                        <img src="assets/images/login/charcter.png" class="img-fluid" alt="charcter">
+                        <img src="assets/images/login/ring.png" class="img-fluid" alt="notions">
                         <h1>Welcome friend!</h1>
                     </div>
                 </div>
@@ -39,14 +39,15 @@
                         </div>
                         <div class="login-discription">
                             <h3>Hello Everyone</h3>
-                            <h4>Welcome to Wing, create your account below to start usinf friendbook.</h4>
+                            <h4>Welcome to WingTek, create your account below to start using WingTek Notions.</h4>
                         </div>
                         <div class="form-sec">
-                            <div>
-                                <form class="theme-form">
+                            <div> 
+                                <form #loginForm="ngForm" class ="theme-form">
                                     <div class="form-group">
-                                        <label for="name">Full Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                        <label for="name" 
+                                        >Full Name</label>
+                                        <input type="text" class="form-control" id="name" name="username" [(ngModel)]="model.username" placeholder="Your Name">
                                         <app-feather-icon [class]="'input-icon iw-20 ih-20'"
                                             [icons]="'user'"></app-feather-icon>
                                     </div>
@@ -59,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                        <input name="password" [(ngModel)]="model.password" type="password" class="form-control" id="exampleInputPassword1"
                                             placeholder="Password">
                                         <app-feather-icon [class]="'input-icon iw-20 ih-20'" [icons]="'eye'"></app-feather-icon>
                                         <!-- <app-feather-icon [icons]="'eye-off'" [class]="'nput-icon iw-20 ih-20'"></app-feather-icon> -->
@@ -72,8 +73,8 @@
                                         <a href="javascript:void(0)" class="ms-auto">forget password?</a>
                                     </div>
                                     <div class="btn-section">
-                                        <a href="javascript:void(0)" class="btn btn-solid btn-lg">sign up</a>
-                                        <a [routerLink]="['/auth/login']" class="btn btn-solid btn-lg ms-auto">login</a>
+                                        <a href="javascript:void(0)" (click)="register()" class="btn btn-solid btn-lg">sign up</a>
+                                        <a (click)="login()" class="btn btn-solid btn-lg ms-auto">login</a>
                                     </div>
                                 </form>
                                 <div class="connect-with">
@@ -100,18 +101,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="how-work">
-        <div class="media">
-            <app-feather-icon [icons]="'play-circle'"></app-feather-icon>
-            <div class="media-body">
-                <h2>how it work?</h2>
-                <p>
-                    Friendbook is a website which allows users, who sign-up for free profiles, to connect with
-                    friends, work colleagues or people they don't know, online.
-                </p>
             </div>
         </div>
     </div>

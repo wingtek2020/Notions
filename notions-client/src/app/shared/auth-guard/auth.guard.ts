@@ -20,6 +20,7 @@ export class AdminGuard  {
     route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let user = JSON.parse(localStorage.getItem('user') || '{}');
+    /*
     if (!user || user === null) {
       this.router.navigate(['/auth/login']);
       return true;
@@ -30,6 +31,7 @@ export class AdminGuard  {
         return true;
       }
     }
+      */
     return true;
   }
 

@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { User } from './../../../../../../_models/user.ts/user.ts.component';
+import { AccountService } from './../../../../../../_services/account.service';
+import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FeatherIconComponent } from '../../../feather-icon/feather-icon.component';
 import { ClickOutSideDirective } from '../../../../../directives/click-out-side.directive';
+
+import {map} from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,9 +17,12 @@ import { ClickOutSideDirective } from '../../../../../directives/click-out-side.
 
 export class UserProfileComponent {
 
-  public isOpen: boolean = false;
+  public isOpen: boolean = false;  
+  public accountService = inject(AccountService);
+  private user: User;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) {   
+  }
 
   outSideClose() {
     this.isOpen = false;

@@ -43,18 +43,18 @@
                         </div>
                         <div class="form-sec">
                             <div>
-                                <form class="theme-form" [formGroup]="loginForm">
+                                <form #loginForm="ngForm" class="theme-form">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Enter email" formControlName="email">
+                                            placeholder="Enter email" name="username" [(ngModel)]="model.username" >
                                         <app-feather-icon [icons]="'user'"
                                             [class]="'input-icon iw-20 ih-20'"></app-feather-icon>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
-                                        <input  class="form-control" id="exampleInputPassword1"
-                                            placeholder="Password" formControlName="password" [type]="show ? 'text' : 'password'" >
+                                        <input  class="form-control" id="exampleInputPassword1" name="password"
+                                            placeholder="Password" [type]="show ? 'text' : 'password'" [(ngModel)]="model.password"  >
                                             @if(show){
                                                 <app-feather-icon [icons]="'eye'" [class]="'input-icon iw-20 ih-20'" (click)="show = !show"></app-feather-icon>
                                             } @else {
@@ -69,8 +69,8 @@
                                         <a href="javascript:void(0)" class="ms-auto forget-password">forget password?</a>
                                     </div>
                                     <div class="btn-section">
-                                        <button class="btn btn-solid btn-lg" [disabled]="!loginForm.valid" (click)="login()">login</button>
-                                        <button [routerLink]="['/others/register']" class="btn btn-solid btn-lg ms-auto">sign up</button>
+                                        <button class="btn btn-solid btn-lg" (click)="login()">login</button>
+                                        <button (click)="register()" class="btn btn-solid btn-lg ms-auto">sign up</button>
                                     </div>  
                                 </form>
                                 <div class="connect-with">
