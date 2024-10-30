@@ -37,4 +37,24 @@ export class AccountService {
       })
     );
   }
+
+  registerwithRavelry() {
+/*
+    const ravAuth: RavelryAuth = {
+      client_id: "69d7f7210e712f794e2e4dcfa8214265",
+      client_secret: "lLyvDNbjb/190o23ktU8qpzv9ypy7OBaJN9eIg7u",
+      redirect_uri: "www.google.com"
+    };
+
+    console.log('reg');
+    return this.http.post(this.baseUrl + "https://www.ravelry.com/oauth2/auth", ravAuth).pipe(
+      map((returnData) => {
+        if (returnData) {
+         console.log(returnData);
+        }
+        return;
+      })
+    );
+    */
+  }
 }
