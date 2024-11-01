@@ -1,0 +1,13 @@
+<h4>Internal Server Error</h4>
+@if(error){
+    <h5>Error: {{error.message}}</h5>
+    <p>Note: if you are seeing this then angular is not to blame</p>
+    <p>What do you do next</p>
+    <ol>
+        <li>Open chrome dev tools and check the failing network request</li>
+        <li>Examine the url of the failing request</li>
+        <li>Reproduce error in postman</li>
+    </ol>
+    <p>Following is the stack trace</p>
+    <code>{{error.details}}</code>
+}

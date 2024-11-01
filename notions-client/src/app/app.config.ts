@@ -1,19 +1,24 @@
+import { errorInterceptor } from './_interceptors/error.interceptor';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors} from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { routes } from './app.routes';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { AuthConfig, OAuthModule } from 'angular-oauth2-oidc';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
-  provideHttpClient(),
+  provideHttpClient(withInterceptors([errorInterceptor])),
   
   provideAnimations(),
+  provideToastr({
+    positionClass: 'toast-bottom-right'
+  }),
   importProvidersFrom(
     OAuthModule.forRoot(),
     FlatpickrModule.forRoot({}),

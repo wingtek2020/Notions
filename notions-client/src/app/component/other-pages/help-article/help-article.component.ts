@@ -7,12 +7,13 @@ import { ArticleSidebarComponent } from './article-sidebar/article-sidebar.compo
 import { DownloadComponent } from '../../widgets/download/download.component';
 import { LoadingComponent } from '../../../shared/skeleton-loader/widgets/loading/loading.component';
 import { FooterComponent } from '../../widgets/footer/footer.component';
+import { TestErrorsComponent } from "../../../errors/test-errors/test-errors.component";
 
 @Component({
   selector: 'app-help-article',
   standalone: true,
-  imports: [HeaderOneComponent,AnimationEmojiComponent,ArticlePartComponent,
-  ArticleSidebarComponent,LoadingComponent,DownloadComponent,FooterComponent],
+  imports: [HeaderOneComponent, AnimationEmojiComponent, ArticlePartComponent,
+    ArticleSidebarComponent, LoadingComponent, DownloadComponent, FooterComponent, TestErrorsComponent],
   templateUrl: './help-article.component.html',
   styleUrl: './help-article.component.scss'
 })

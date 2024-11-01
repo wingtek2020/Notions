@@ -9,6 +9,8 @@ import { SvgIconComponent } from '../../shared/components/common/svg-icon/svg-ic
 import { FeatherIconComponent } from '../../shared/components/common/feather-icon/feather-icon.component';
 import { LoadingComponent } from '../../shared/skeleton-loader/widgets/loading/loading.component';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-auth-login',
   standalone: true,
@@ -25,6 +27,8 @@ export class AuthLoginComponent {
   private accountService = inject(AccountService);
   public show: boolean = false;
   
+  private toaster = inject(ToastrService);
+  
   constructor(public router: Router,public commonServices :CommonService) {
     const userData = localStorage.getItem('user');
       if(userData?.length != null){
@@ -37,10 +41,10 @@ export class AuthLoginComponent {
   }
 
   login() {
-    
+     
     this.accountService.login(this.model).subscribe({
       next: (response) => {
-      
+       // this.toaster.info(this.model.username, 'in login');
         let user = {
             token: response, //cew todo
             username: this.model.username,
@@ -48,7 +52,7 @@ export class AuthLoginComponent {
           localStorage.setItem("user", JSON.stringify(user));
           this.router.navigate(["/news-feed-layout/style-1"]);        
       },
-      error: (error) => console.log(error),
+      error: (error) => this.toaster.error(error.error),
     });
   }
 
@@ -57,7 +61,7 @@ export class AuthLoginComponent {
     this.router.navigate(['/others/register']).then(navigatedSuccessfully => {
       if (!navigatedSuccessfully) {
         // Handle navigation failure here
-        console.error('Navigation failed'); 
+        this.toaster.error('Navigation failed');
       }
     });
   }

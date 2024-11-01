@@ -4,6 +4,7 @@ import { Component, inject } from "@angular/core";
 import { SvgIconComponent } from "../../../shared/components/common/svg-icon/svg-icon.component";
 import { FeatherIconComponent } from "../../../shared/components/common/feather-icon/feather-icon.component";
 import { LoadingComponent } from "../../../shared/skeleton-loader/widgets/loading/loading.component";
+import { ToastrService } from 'ngx-toastr';
 
 import { Router, RouterModule } from "@angular/router";
 
@@ -24,6 +25,7 @@ export class RegisterComponent {
   loggedIn = false;
   model: any = {};
   private accountService = inject(AccountService);
+  private toaster = inject(ToastrService);
 
   constructor(public router: Router) {}
 
@@ -34,7 +36,8 @@ export class RegisterComponent {
         this.loggedIn = true;
         this.router.navigate(["/news-feed-layout/style-1"]);  
       },
-      error: (error) => console.log(error),
+      
+      error: (error) => this.toaster.error(error.error),
     });
   }
 
@@ -49,7 +52,7 @@ export class RegisterComponent {
           localStorage.setItem("user", JSON.stringify(user));
           this.router.navigate(["/news-feed-layout/style-1"]);        
       },
-      error: (error) => console.log(error),
+      error: (error) => this.toaster.error(error.error)
     });
   }
 }

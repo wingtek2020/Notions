@@ -1,3 +1,6 @@
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { NotFoundComponent } from './component/company-pages/not-found/not-found.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { Routes } from '@angular/router';
 import { AdminGuard } from './shared/auth-guard/auth.guard';
 import { ContentComponent } from './shared/components/layout/content/content.component';
@@ -29,7 +32,15 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
 
   },
-
+  { path: 'errors',
+    component: TestErrorsComponent,
+  },
+  { path: 'not-found',
+    component: NotFoundComponent,
+  },
+  { path: 'server-error',
+    component: ServerErrorComponent,
+  },
   { path: '**', redirectTo: 'company/404' }
 
 ];
