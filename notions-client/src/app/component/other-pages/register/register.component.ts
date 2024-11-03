@@ -30,6 +30,7 @@ export class RegisterComponent {
   constructor(public router: Router) {}
 
   register() {
+    console.log(this.model);
     this.accountService.register(this.model).subscribe({
       next: (response) => {
           

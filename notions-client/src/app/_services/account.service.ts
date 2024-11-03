@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { User } from "./../_models/user.ts/user.ts.component";
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject, signal } from "@angular/core";
@@ -8,18 +9,24 @@ import { map } from "rxjs";
   providedIn: "root",
 })
 export class AccountService {
-  baseUrl = "https://localhost:5001/api/";
+  baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
   currentUsername : string;
+  token : string;
+
   private http = inject(HttpClient);
 
   login(model: any) {
+    console.log('here ', this.baseUrl);
     return this.http.post<User>(this.baseUrl + "account/login", model).pipe(
       map((user) => {
         if (user) {
-          localStorage.setItem("user", JSON.stringify(user));
+          
           this.currentUser.set(user);
           this.currentUsername = user.username;
+          this.token = user.token;
+          
+          console.log('got token', user.token);
         }
       })
     );

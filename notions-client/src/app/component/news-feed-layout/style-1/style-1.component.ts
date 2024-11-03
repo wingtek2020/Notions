@@ -26,6 +26,7 @@ import { PostService } from '../../../shared/services/news-feed-layout/post.serv
 import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 import { CommonService } from '../../../shared/services/common.service';
+import { MemberListComponent } from "../../member-pages/member-list/member-list.component";
 
 @Component({
   selector: 'app-style-1',
@@ -36,7 +37,7 @@ import { CommonService } from '../../../shared/services/common.service';
     FeatherIconComponent, AddFriendCarouselComponent,
     PostDetailsComponent, DetailBoxComponent, SkeletonStyle1Component,
     PostHeaderComponent, LikePanelComponent, PostReactComponent,
-    CreatePostComponent, BirthdaySectionComponent, CommonModule],
+    CreatePostComponent, BirthdaySectionComponent, CommonModule, MemberListComponent],
   templateUrl: './style-1.component.html',
   styleUrl: './style-1.component.scss'
 })

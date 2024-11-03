@@ -9,7 +9,7 @@ using API.DTOs;
 
 namespace API.Controllers
 {
-    [Authorize]
+   
     public class UsersController(IUserRepository userRepository, IMapper mapper) : BaseApiController
     {
         // GET: Users

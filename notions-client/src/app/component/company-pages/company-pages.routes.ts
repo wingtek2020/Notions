@@ -7,7 +7,7 @@ import { CompanyBlogDetailsComponent } from "./company-blog-details/company-blog
 import { CompanyBlogComponent } from "./company-blog/company-blog.component";
 import { CompanyCareerComponent } from "./company-career/company-career.component";
 import { CompanyFAQComponent } from "./company-faq/company-faq.component";
-import { CompanyHomeComponent } from "./company-home/company-home.component";
+import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { ContactsUsComponent } from "./contacts-us/contacts-us.component";
 
@@ -17,7 +17,7 @@ export default [
         children: [
             {
                 path: 'home',
-                component: CompanyHomeComponent
+                component: HomeComponent
             },
             {
                 path: 'about',
