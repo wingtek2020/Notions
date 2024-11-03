@@ -1,6 +1,7 @@
 <div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
     <app-profile-about-skeleton></app-profile-about-skeleton>
 </div>
+<app-member-detail></app-member-detail>
 <app-profile-pages></app-profile-pages>
 <app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
 <div class="container-fluid section-t-space px-0">
@@ -10,6 +11,7 @@
                 <app-about-intro-my-self [introMySelf]="introMySelfAbout"></app-about-intro-my-self>
             </div>
         </div>
+       
         <div class="content-center col-xl-8">
             <div class="about-profile section-b-space">
                 <app-hobbies-interest [hobbyInterests]="hobbyInterest"></app-hobbies-interest>

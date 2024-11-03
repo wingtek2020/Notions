@@ -27,7 +27,7 @@ export class MemberService {
   }
 
   getMember(username: string) {
-    return this.http.get<Member>(this.baseUrl + "users/" + username, this.getHttpOptions());
+    return this.http.get<Member>(this.baseUrl + "users/" + username);
   }
   getHttpOptions(){
     console.log('token', this.accountService.currentUser());

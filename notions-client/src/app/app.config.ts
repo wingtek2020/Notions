@@ -1,8 +1,11 @@
+import { jwtInterceptor } from './_interceptors/jwt.interceptor';
 import { errorInterceptor } from './_interceptors/error.interceptor';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { GalleryModule } from 'ng-gallery';
 
 import { provideHttpClient, withInterceptors} from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -13,7 +16,9 @@ import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
-  provideHttpClient(withInterceptors([errorInterceptor])),
+    provideAnimations(),
+    importProvidersFrom(GalleryModule),
+    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
   
   provideAnimations(),
   provideToastr({

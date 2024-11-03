@@ -1,3 +1,4 @@
+import { AboutComponent } from './component/profile-pages/about/about.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundComponent } from './component/company-pages/not-found/not-found.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -13,7 +14,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'news-feed-layout/style-1',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'auth/login',
@@ -24,6 +25,16 @@ export const routes: Routes = [
     component: ContentComponent,
     children: contentRoutes,
     canActivate: [AdminGuard],
+    
+  },
+  {
+    path: 'news-feed-layout/style-1',
+    canActivate: [AdminGuard],
+    component: ContentComponent,
+    children: [
+      {path: 'news-feed-layout/style-1/:username', component: AboutComponent}
+    ]
+    
   },
   {
     path: '',
