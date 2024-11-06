@@ -1,1 +1,13 @@
-<p>raverly-pattern-list works!</p>
+<section class="element-modal section-pt-space section-pb-space ratio2_3">
+    <div class="container">
+    <div class="card-group col-sm-12">
+        @for(inspiration of inspirations; track inspiration.id){
+            <div>
+                
+                <app-ravelry-pattern-card [inspiration]="inspiration"></app-ravelry-pattern-card>>
+            </div>
+        }
+        
+    </div>
+    
+</div>

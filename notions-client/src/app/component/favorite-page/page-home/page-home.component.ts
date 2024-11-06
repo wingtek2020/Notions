@@ -1,6 +1,6 @@
+import { RaverlyPatternListComponent } from './../../ravelry-patterns/raverly-pattern-list/raverly-pattern-list.component';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
 import { BirthdayReminderComponent } from '../../../shared/components/common/birthday-reminder/birthday-reminder.component';
 import { EventsComponent } from '../../../shared/components/common/events/events.component';
 import { FeatherIconComponent } from '../../../shared/components/common/feather-icon/feather-icon.component';
@@ -26,11 +26,11 @@ import { PageHomeSkeletonComponent } from '../../../shared/skeleton-loader/favor
 @Component({
   selector: 'app-page-home',
   standalone: true,
-  imports : [CommonModule,FeatherIconComponent,PostDetailsComponent,
-    PostHeaderComponent,LikedPagesComponent,DetailBoxComponent,
-    LikePanelComponent,PostReactComponent,GalleryComponent,PageHomeSkeletonComponent,
-    BirthdayReminderComponent,AboutDataComponent,EventsComponent,
-    PageCoverComponent,ProfileMenuComponent],
+  imports: [CommonModule, FeatherIconComponent, PostDetailsComponent,
+    PostHeaderComponent, LikedPagesComponent, DetailBoxComponent,
+    LikePanelComponent, PostReactComponent, GalleryComponent, PageHomeSkeletonComponent,
+    BirthdayReminderComponent, AboutDataComponent, EventsComponent,
+    PageCoverComponent, ProfileMenuComponent, RaverlyPatternListComponent],
   templateUrl: './page-home.component.html',
   styleUrl: './page-home.component.scss'
 })

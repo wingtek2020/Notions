@@ -6,6 +6,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
   const accountService = inject(AccountService);
 
+  console.log('here ', 'getting intercepted');
+  
   if(accountService.currentUser()){
     console.log('AS ',accountService.currentUser()?.token);
     req = req.clone({

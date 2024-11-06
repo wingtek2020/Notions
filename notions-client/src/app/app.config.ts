@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
     provideAnimations(),
     importProvidersFrom(GalleryModule),
-    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor])),
   
   provideAnimations(),
   provideToastr({
