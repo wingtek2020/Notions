@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Member } from './../../../../../_models/member';
+import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../../../../shared/components/common/feather-icon/feather-icon.component';
 import { ChoosePhotoComponent } from '../choose-photo/choose-photo.component';
@@ -17,11 +18,14 @@ import { SvgIconComponent } from '../../../../../shared/components/common/svg-ic
 export class EditProfileComponent {
 
   public relationshipStatus = relationshipStatus;
+  member? : Member;
 
   constructor(public modalServices: NgbModal) { }
 
   editImage() {
-    this.modalServices.open(ChoosePhotoComponent, { size: 'lg', windowClass: 'Choose-photo-modal' })
+    this.modalServices.open(ChoosePhotoComponent, { size: 'lg', windowClass: 'Choose-photo-modal'})
+
+   
   }
 
 }

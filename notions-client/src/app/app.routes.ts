@@ -1,3 +1,4 @@
+import { MemberEditComponent } from './component/member-pages/member-edit/member-edit.component';
 import { AboutComponent } from './component/profile-pages/about/about.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundComponent } from './component/company-pages/not-found/not-found.component';
@@ -32,7 +33,8 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
     component: ContentComponent,
     children: [
-      {path: 'news-feed-layout/style-1/:username', component: AboutComponent}
+      {path: 'news-feed-layout/style-1/:username', component: AboutComponent},
+      {path: 'news-feed-layout/style-1/edit', component: MemberEditComponent}
     ]
     
   },

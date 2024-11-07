@@ -1,5 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Member } from './../../../../_models/member';
+import { MemberService } from './../../../../_services/members.service';
+import { inject, OnInit } from '@angular/core';
+import { AccountService } from './../../../../_services/account.service';
+import { Component, Input, Injector } from '@angular/core';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { FeatherIconComponent } from '../feather-icon/feather-icon.component';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
@@ -15,17 +19,34 @@ import { introMySelf, introMySelfFooter } from '../../../data/profile-pages/time
   styleUrl: './about-intro-my-self.component.scss'
 })
 
-export class AboutIntroMySelfComponent {
+export class AboutIntroMySelfComponent implements OnInit {
 
+  member? : Member;
+  private accountService = inject(AccountService);
+  private memberService = inject(MemberService);
   @Input() introMySelf :introMySelf[];
 
   public introMySelfFooter = introMySelfFooter ;
 
   constructor(public modalServices :NgbModal){}
-
-  editProfile(){
-     this.modalServices.open(EditProfileComponent, {size:'lg'})
+  ngOnInit(): void {
+    this.loadMember();
 
   }
+
+  loadMember(){
+    const user= this.accountService.currentUser();
+    if (!user) return;
+    this.memberService.getMember(user.username).subscribe({
+      next: member => this.member = member
+    })
+  }
+  editProfile(){
+     const modalRef = this.modalServices.open(EditProfileComponent, {size:'lg'})
+     modalRef.componentInstance.member = this.member;
+     
+  }
+
+     
 
 }
