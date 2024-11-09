@@ -35,10 +35,19 @@ import {
   subMonths,
   subWeeks
 } from "./chunk-QWKVKVM7.js";
-import {
-  __assign
-} from "./chunk-WKWW5KYN.js";
 import "./chunk-TXDUYLVM.js";
+
+// node_modules/angular-calendar/node_modules/tslib/tslib.es6.mjs
+var __assign = function() {
+  __assign = Object.assign || function __assign2(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
 
 // node_modules/calendar-utils/date-adapters/esm/date-fns/index.js
 function getTimezoneOffset(date) {

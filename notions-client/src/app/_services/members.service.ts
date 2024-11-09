@@ -5,7 +5,7 @@ import { User } from "./../_models/user.ts/user.ts.component";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject, signal } from "@angular/core";
 
-import { map } from "rxjs";
+import { map, of, tap } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -14,21 +14,22 @@ export class MemberService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   private accountService = inject(AccountService);
-  members : Member[] = [];
+  members = signal<Member[]>([]);
 
   getMembers() {
-    console.log(this.baseUrl + "users");
-    this.http.get<Member[]>(this.baseUrl + "users").subscribe(data => {
-      this.members = data;
-      console.log('members', this.members);
-      return this.members;
-    });
-    return this.http.get<Member[]>(this.baseUrl + "users");
+      return this.http.get<Member[]>(this.baseUrl + "users").subscribe({
+      next: members =>{
+        this.members.set(members)
+      } 
+    })
   }
 
   getMember(username: string) {
+    const member = this.members().find(x => x.username === username);
+    if (member !== undefined) return of(member);     
     return this.http.get<Member>(this.baseUrl + "users/" + username);
   }
+
   getHttpOptions(){
     console.log('token', this.accountService.currentUser());
 
@@ -39,4 +40,16 @@ export class MemberService {
     } )
   }
 }
+
+ updateMember(member: Member){
+
+    return this.http.put(this.baseUrl + 'users', member).pipe(
+      tap(() => {
+          this.members.update(members => 
+            members.map(m => m.username === member.username ?
+            member : m))
+      })
+      )
+  }
 }
+

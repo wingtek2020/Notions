@@ -3,7 +3,7 @@ import {
   NgClass,
   NgForOf,
   NgIf
-} from "./chunk-5JAL5523.js";
+} from "./chunk-FGZSZL2S.js";
 import {
   Component,
   Directive,
@@ -42,9 +42,8 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-I2FEAVWX.js";
-import "./chunk-J4ZQI5EQ.js";
-import "./chunk-WKWW5KYN.js";
+} from "./chunk-GPEWBISG.js";
+import "./chunk-CM6RKQAG.js";
 import "./chunk-TXDUYLVM.js";
 
 // node_modules/ngx-bootstrap/tabs/fesm2022/ngx-bootstrap-tabs.mjs

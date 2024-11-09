@@ -28,6 +28,8 @@ export class AboutIntroMySelfComponent implements OnInit {
 
   public introMySelfFooter = introMySelfFooter ;
 
+  modalRef: any;
+
   constructor(public modalServices :NgbModal){}
   ngOnInit(): void {
     this.loadMember();
@@ -42,11 +44,9 @@ export class AboutIntroMySelfComponent implements OnInit {
     })
   }
   editProfile(){
-     const modalRef = this.modalServices.open(EditProfileComponent, {size:'lg'})
-     modalRef.componentInstance.member = this.member;
-     
+     this.modalRef = this.modalServices.open(EditProfileComponent, {size:'lg'})
+     this.modalRef.componentInstance.member = this.member;
+         
   }
-
-     
 
 }

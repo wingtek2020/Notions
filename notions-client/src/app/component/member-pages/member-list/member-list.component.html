@@ -1,7 +1,7 @@
 <section class="element-modal section-pt-space section-pb-space ratio2_3">
     <div class="container">
     <div class="card-group col-sm-12">
-        @for(member of members; track member.id){
+        @for(member of memberService.members(); track member.id){
             <div>
                 <app-member-card [member]="member"></app-member-card>
             </div>
