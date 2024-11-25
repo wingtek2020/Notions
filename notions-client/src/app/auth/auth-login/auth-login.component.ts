@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { AuthRavelryService } from './../../_services/ravelryServices/auth-ravelry.service';
 import { AccountService } from './../../_services/account.service';
 import { Component, inject} from '@angular/core';
 import { Validators } from '@angular/forms';
@@ -24,12 +26,16 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthLoginComponent {
 
   model: any = {};
-  private accountService = inject(AccountService);
+  private accountService = inject(AccountService);  
+  private authService = inject(AuthRavelryService);
   public show: boolean = false;
+  profile = this.authService.profile;
   
   private toaster = inject(ToastrService);
   
-  constructor(public router: Router,public commonServices :CommonService) {
+  constructor(public router: Router,public commonServices :CommonService,
+      public http: HttpClient 
+  ) {
     const userData = localStorage.getItem('user');
       if(userData?.length != null){
         router.navigate(['/news-feed-layout/style-1'])
@@ -57,13 +63,32 @@ export class AuthLoginComponent {
   }
 
   register(){
-    console.log('here', this.model);
+   
     this.router.navigate(['/others/register']).then(navigatedSuccessfully => {
       if (!navigatedSuccessfully) {
         // Handle navigation failure here
         this.toaster.error('Navigation failed');
       }
     });
+  }
+
+  loginWithRavelry(){
+    this.authService.login();
+    this.getUserName();
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  getUserName() {
+    console.log(this.profile());
+    const headers = { 'Authorization': 'Bearer ' + this.profile() };
+    this.http.get<any>('https://api.ravelry.com/current_user.json', { headers })
+        .subscribe(data => {
+
+          console.log(data);
+        })
   }
 
 }

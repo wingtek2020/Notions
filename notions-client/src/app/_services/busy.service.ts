@@ -19,7 +19,7 @@ export class BusyService {
         color:'#fff',
         size:'default'
       })
-    console.log('here', 'inside busy');
+ 
   }
 
   idle(){

@@ -50,10 +50,15 @@ namespace API.Controllers
                 if(computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password");
             }
 
+            var photo = context.Photos.Where(x => x.AppUserId == user.Id)
+                .Where(x => x.IsMain).FirstOrDefault();
+
+
             return new UserDto
             {
                 Username = registerDto.Username,
-                Token = tokenService.CreateToken(user)
+                Token = tokenService.CreateToken(user),
+                PhotoUrl = photo?.Url
             };
 
         }

@@ -12,9 +12,15 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
   currentUsername : string;
+  photoUrl: string;
   token : string;
 
   private http = inject(HttpClient);
+
+  setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser.set(user);
+  }
 
   login(model: any) {
     console.log('here ', this.baseUrl);
@@ -22,11 +28,12 @@ export class AccountService {
       map((user) => {
         if (user) {
           
-          this.currentUser.set(user);
+         
           this.currentUsername = user.username;
           this.token = user.token;
-          
-          console.log('got token', user.token);
+          this.photoUrl = user.photoUrl;
+          console.log('got url', user.photoUrl);
+          this.currentUser.set(user);
         }
       })
     );

@@ -14,7 +14,7 @@ import { ProfileGallerySkeletonComponent } from '../../../shared/skeleton-loader
   imports: [PageCoverComponent,ProfileMenuComponent,PhotosComponent,
     ProfileGallerySkeletonComponent,],
   templateUrl: './favorite-photos.component.html',
-  styleUrl: './favorite-photos.component.scss'
+  styleUrl: './favorite-photos.component.css'
 })
 
 export class FavoritePhotosComponent {

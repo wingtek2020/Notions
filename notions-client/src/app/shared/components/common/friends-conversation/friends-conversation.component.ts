@@ -32,11 +32,7 @@ export class FriendsConversationComponent {
   constructor(public commonServices: CommonService) { }
 
   ngOnInit() {
-    this.commonServices.friendsConversation().subscribe(Response => {
-      if (Response) {
-        this.friendsListData = Response.friendsConversationList;
-      }
-    })
+    
   }
 
   outSideClose() {

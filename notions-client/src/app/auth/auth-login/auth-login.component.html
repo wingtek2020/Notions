@@ -91,7 +91,19 @@
                                                 <app-svg-icon [icons]="'twitter'"></app-svg-icon>
                                             </a>
                                         </li>
+                                        <li class="facebook">
+                                            <a href="javascript:void(0)" (click)="loginWithRavelry()">
+                                                <app-svg-icon [icons]="'RavelryIcon-Color-32x32'"></app-svg-icon>
+                                            </a>
+                                        </li>
                                     </ul>
+                                    <p>Token</p>
+                                    <p>
+                                        {{ profile() }}
+                                        <br>
+                                    </p>
+                                    <button (click)="logout()">Logout</button>
+                                    
                                 </div>
                             </div>
                         </div>
